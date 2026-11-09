@@ -24,11 +24,11 @@ from pathlib import Path
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
 
-import fitz
+import pymupdf as fitz
 from PIL import Image, ImageTk
 
 APP_NOMBRE = 'Cuadernillos PDF'
-APP_VERSION = '1.0.0'
+APP_VERSION = '1.0.1'
 APP_AUTOR = 'Thomas Wilber Ramírez Zumaran'
 APP_EMAIL = 'teseoperu@gmail.com'
 
@@ -206,25 +206,99 @@ class Aplicacion(tk.Tk):
         barra.add_cascade(label='Ayuda', menu=ayuda)
         self.config(menu=barra)
 
+
     def acerca_de(self):
+        import webbrowser
+
         ventana = tk.Toplevel(self)
         ventana.title('Acerca de Cuadernillos PDF')
         ventana.resizable(False, False)
         ventana.transient(self)
         ventana.grab_set()
+
         marco = ttk.Frame(ventana, padding=25)
         marco.pack(fill='both', expand=True)
-        ttk.Label(marco, text=APP_NOMBRE, font=('Sans', 17, 'bold')).pack(pady=(0, 5))
-        ttk.Label(marco, text=f'Versión {APP_VERSION}').pack()
-        ttk.Label(marco, text='Herramienta para preparar e imprimir cuadernillos PDF.', wraplength=330, justify='center').pack(pady=(15, 18))
-        ttk.Separator(marco, orient='horizontal').pack(fill='x', pady=(0, 15))
+
+        ttk.Label(
+            marco, text=APP_NOMBRE,
+            font=('Sans', 17, 'bold')
+        ).pack(pady=(0, 5))
+
+        ttk.Label(
+            marco, text=f'Versión {APP_VERSION}'
+        ).pack()
+
+        ttk.Label(
+            marco,
+            text='Herramienta para preparar e imprimir cuadernillos PDF.',
+            wraplength=370,
+            justify='center'
+        ).pack(pady=(15, 18))
+
+        ttk.Separator(
+            marco, orient='horizontal'
+        ).pack(fill='x', pady=(0, 15))
+
         ttk.Label(marco, text='Desarrollado por').pack()
-        ttk.Label(marco, text=APP_AUTOR, font=('Sans', 10, 'bold')).pack(pady=(4, 2))
+
+        ttk.Label(
+            marco, text=APP_AUTOR,
+            font=('Sans', 10, 'bold')
+        ).pack(pady=(4, 2))
+
         ttk.Label(marco, text=APP_EMAIL).pack()
-        ttk.Label(marco, text=f'© 2026 {APP_AUTOR}', foreground='#666').pack(pady=(16, 12))
-        ttk.Button(marco, text='Cerrar', command=ventana.destroy).pack()
+
+        ttk.Separator(
+            marco, orient='horizontal'
+        ).pack(fill='x', pady=15)
+
+        ttk.Label(
+            marco,
+            text='Software libre bajo licencia GNU AGPL-3.0',
+            font=('Sans', 10, 'bold')
+        ).pack(pady=(0, 5))
+
+        ttk.Label(
+            marco,
+            text='Puedes utilizar, estudiar, compartir y modificar '
+                 'este programa conforme a los términos de su licencia.',
+            wraplength=370,
+            justify='center'
+        ).pack(pady=(0, 10))
+
+        ttk.Button(
+            marco,
+            text='Ver código fuente y licencia en GitHub',
+            command=lambda: webbrowser.open(
+                'https://github.com/teseoperu/cuadernillos'
+            )
+        ).pack(pady=(0, 10))
+
+        ttk.Label(
+            marco,
+            text='Bibliotecas de terceros: consulta THIRD_PARTY_NOTICES.md '
+                 'en el paquete de distribución.',
+            wraplength=370,
+            justify='center',
+            foreground='#666'
+        ).pack(pady=(0, 10))
+
+        ttk.Label(
+            marco,
+            text=f'© 2026 {APP_AUTOR}',
+            foreground='#666'
+        ).pack(pady=(5, 12))
+
+        ttk.Button(
+            marco, text='Cerrar',
+            command=ventana.destroy
+        ).pack()
+
         ventana.update_idletasks()
-        ventana.geometry(f'+{self.winfo_rootx()+100}+{self.winfo_rooty()+90}')
+        ventana.geometry(
+            f'+{self.winfo_rootx()+100}+{self.winfo_rooty()+90}'
+        )
+
 
     def crear_interfaz(self):
         cont = ttk.Frame(self, padding=16)
