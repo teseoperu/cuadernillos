@@ -1,0 +1,25 @@
+# Entorno virtual
+pdfs/
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Archivos PDF de trabajo
+*.pdf
+
+# Archivos generados
+build/
+dist/
+*.spec
+
+# Archivos temporales
+*.tmp
+*.log
+
+# Configuración local
+.idea/
+.vscode/
