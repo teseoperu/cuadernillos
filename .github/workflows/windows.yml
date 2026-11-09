@@ -1,0 +1,38 @@
+
+name: Compilar Cuadernillos PDF para Windows
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalar dependencias
+        run: python -m pip install --upgrade pymupdf pillow pyinstaller
+
+      - name: Crear ejecutable
+        run: >
+          pyinstaller --noconfirm --clean --onefile
+          --windowed
+          --name CuadernillosPDF
+          --version-file version_info.txt
+          cuadernillos.py
+
+      - name: Publicar ejecutable descargable
+        uses: actions/upload-artifact@v4
+        with:
+          name: CuadernillosPDF-Windows
+          path: dist/CuadernillosPDF.exe
