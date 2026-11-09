@@ -12,7 +12,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Descargar código
+      - name: Descargar codigo
         uses: actions/checkout@v4
 
       - name: Configurar Python
@@ -21,7 +21,9 @@ jobs:
           python-version: '3.12'
 
       - name: Instalar dependencias
-        run: python -m pip install --upgrade pymupdf pillow pyinstaller
+        run: |
+          python -m pip install -r requirements.txt
+          python -m pip install pyinstaller==6.16.0
 
       - name: Crear ejecutable
         run: >
@@ -31,8 +33,17 @@ jobs:
           --version-file version_info.txt
           cuadernillos.py
 
-      - name: Publicar ejecutable descargable
+      - name: Preparar distribucion
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path paquete
+          Copy-Item dist/CuadernillosPDF.exe paquete/
+          Copy-Item LICENSE paquete/
+          Copy-Item README.md paquete/
+          Copy-Item requirements.txt paquete/
+
+      - name: Publicar paquete descargable
         uses: actions/upload-artifact@v4
         with:
-          name: CuadernillosPDF-Windows
-          path: dist/CuadernillosPDF.exe
+          name: CuadernillosPDF-Windows-v1.0.1
+          path: paquete/

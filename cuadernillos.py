@@ -1,5 +1,22 @@
 #!/usr/bin/env python3
 """Imposición de cuadernillos A5 en A4 apaisado. Requiere PyMuPDF y Pillow."""
+
+# Cuadernillos PDF
+# Copyright (C) 2026 Thomas Wilber Ramírez Zumaran
+# Contacto: teseoperu@gmail.com
+#
+# SPDX-License-Identifier: AGPL-3.0-only
+#
+# Este programa es software libre: puedes redistribuirlo
+# y modificarlo bajo los términos de la GNU Affero
+# General Public License, versión 3.
+#
+# Este programa se distribuye sin ninguna garantía.
+# Consulta el archivo LICENSE para más información.
+#
+# Código fuente:
+# https://github.com/teseoperu/cuadernillos
+
 import math
 import re
 import threading

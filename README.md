@@ -26,3 +26,27 @@ A4 horizontal, doble cara, voltear por borde corto, tamaño real y una página P
 ## Licencias
 
 Antes de redistribuir, comprueba las licencias de PyMuPDF y de las demás dependencias. PyMuPDF tiene condiciones AGPL/comerciales que pueden afectar la distribución de un ejecutable, incluso gratuito.
+
+## Licencia y código fuente
+
+Cuadernillos PDF es software libre, desarrollado por Thomas Wilber Ramírez Zumaran.
+
+Copyright © 2026 Thomas Wilber Ramírez Zumaran.
+
+El programa se distribuye bajo los términos de la **GNU Affero General Public License, versión 3 (AGPL-3.0-only)**.
+
+Puedes utilizarlo, estudiarlo, modificarlo y redistribuirlo respetando las condiciones de dicha licencia.
+
+El programa se proporciona sin garantías.
+
+**Código fuente:** https://github.com/teseoperu/cuadernillos
+
+**Licencia:** consulta el archivo `LICENSE` incluido en este repositorio.
+
+**Contacto:** teseoperu@gmail.com
+
+### Dependencias
+
+El programa utiliza PyMuPDF, distribuido bajo licencia AGPL o comercial, y Pillow, que utiliza una licencia permisiva.
+
+Las licencias y los avisos de las dependencias deben conservarse conforme a sus respectivos términos.
