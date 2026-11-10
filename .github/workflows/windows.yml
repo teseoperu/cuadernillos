@@ -65,4 +65,5 @@ jobs:
           if ($LASTEXITCODE -ne 0) {
             gh release create $env:RELEASE_TAG --title $env:RELEASE_TAG --generate-notes
           }
-          gh release upload $env:RELEASE_TAG CuadernillosPDF-Windows.zip --clobber
+            gh release upload $env:RELEASE_TAG CuadernillosPDF-Windows.zip --clobber
+            gh release upload $env:RELEASE_TAG dist/CuadernillosPDF.exe --clobber
